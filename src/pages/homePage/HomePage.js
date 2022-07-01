@@ -12,20 +12,24 @@ import { Logo } from "./HomePageStyled"
 const HomePage = () => {
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState([])
+    const [morePokemon , setMorePokemon] = useState(20)
 
     useEffect(() => {
         showArray()
-    }, [])
+    }, [() =>showArray()])
 
     const showArray = () => {
         axios
-            .get(`https://pokeapi.co/api/v2/pokemon?limit=24`)
+            .get(`https://pokeapi.co/api/v2/pokemon?limit=${morePokemon}`)
             .then((resp) => setPokemon(resp.data.results))
             .catch((error) => console.log(error))
     }
 
-  
-
+    const addPokemon = () => {
+        const Add = morePokemon + 24
+        setMorePokemon(Add)
+        
+    }
 
     const onScreen = pokemon && pokemon.map((poke) => {
         return (
@@ -40,10 +44,13 @@ const HomePage = () => {
             <HeaderHomePage>
                 <button onClick={() => goToListPage(navigate)} >Lista</button>
                 <Logo img={picachu} />
+               
             </HeaderHomePage>
             <ContainerHomePage>
                 {onScreen}
+                <button onClick={() => addPokemon()}>mais</button>
             </ContainerHomePage>
+           
 
         </>
     )

@@ -11,6 +11,7 @@ background-color: #27cb50;
 border-radius: 10px;
 box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 background-color:${(props)=>props.color};
+margin-top: 10px;
 `
 export const ImagePokemon = styled.img`
 margin-top: 5px;

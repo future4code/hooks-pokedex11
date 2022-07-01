@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Card, ImagePokemon, Tittle } from "./PokeCardStyled"
 import { ButtonsAndName , Buttons} from "./PokeCardStyled"
-import { goToDetailsPage } from "../routes/Coordinator"
+import { Modal } from "./Modal"
 
 
 
 export const PokeCard = (props) => {
-    const navigate = useNavigate()
+    const [isModalVisible , setIsModalVisible] = useState(false)
     const [pokeUrl, setPokeUrl] = useState("")
 
     useEffect(() => {
@@ -18,23 +17,26 @@ export const PokeCard = (props) => {
             .catch((error) => console.log(error))
     }, [pokeUrl])
 
-    useEffect(() => {
-        axios
-            .get(`https://pokeapi.co/api/v2/type/`)
-            .then((resp) => console.log(resp.data.results))
-            .catch((error) => console.log(error))
-    }, [])
+    // useEffect(()=> {
+    //     axios
+    //         .get(`https://pokeapi.co/api/v2/pokemon/ditto`)
+    //         .then((resp) => console.log(resp.data.types.type.name))
+    //         .catch((error) => console.log(error))
+    // }, [])
 
-
+    const SaveTokenPokemon = (pokemon) => {
+        localStorage.setItem("pokemon", pokemon)
+        setIsModalVisible(true)
+    }
 
     return (
         <>
             <Card>
                 <ButtonsAndName>
                     <Tittle>{props.name}</Tittle>
-                    <Buttons>Add Pokédex</Buttons>
-                    <Buttons onClick={() => goToDetailsPage(navigate)}>Detalhes</Buttons>
-                    
+                    <Buttons >Add Pokédex</Buttons>                  
+                    <Buttons onClick={() =>SaveTokenPokemon(props.name)} >Detalhes</Buttons>
+                    {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}/> : null}                    
                 </ButtonsAndName>
                 <ImagePokemon src={pokeUrl} alt={"pokemon"}/>
             </Card>
