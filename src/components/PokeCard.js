@@ -17,13 +17,6 @@ export const PokeCard = (props) => {
             .catch((error) => console.log(error))
     }, [pokeUrl])
 
-    // useEffect(()=> {
-    //     axios
-    //         .get(`https://pokeapi.co/api/v2/pokemon/ditto`)
-    //         .then((resp) => console.log(resp.data.types.type.name))
-    //         .catch((error) => console.log(error))
-    // }, [])
-
     const SaveTokenPokemon = (pokemon) => {
         localStorage.setItem("pokemon", pokemon)
         setIsModalVisible(true)

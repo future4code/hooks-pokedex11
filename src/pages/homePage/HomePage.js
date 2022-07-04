@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { goToListPage } from "../../routes/Coordinator"
 import axios from "axios"
 import { PokeCard } from "../../components/PokeCard"
-import { ContainerHomePage, HeaderHomePage } from "./HomePageStyled"
+import { ContainerHomePage, HeaderHomePage , ButtonList , ButtonAdd} from "./HomePageStyled"
 import picachu from "../../img/pokemon.png"
+import Pokelist from "../../img/pokelist.png"
 import { Logo } from "./HomePageStyled"
-
 
 
 const HomePage = () => {
@@ -26,7 +26,7 @@ const HomePage = () => {
     }
 
     const addPokemon = () => {
-        const Add = morePokemon + 24
+        const Add = morePokemon + 9
         setMorePokemon(Add)
         
     }
@@ -34,7 +34,7 @@ const HomePage = () => {
     const onScreen = pokemon && pokemon.map((poke) => {
         return (
             <PokeCard key={poke.url}
-                name={poke.name}
+                name={poke.name}                
             />
         )
     })
@@ -42,13 +42,13 @@ const HomePage = () => {
     return (
         <>
             <HeaderHomePage>
-                <button onClick={() => goToListPage(navigate)} >Lista</button>
-                <Logo img={picachu} />
+                <ButtonList onClick={() => goToListPage(navigate)} ><img src={Pokelist}/></ButtonList>
+                <Logo src={picachu} />
                
             </HeaderHomePage>
             <ContainerHomePage>
                 {onScreen}
-                <button onClick={() => addPokemon()}>mais</button>
+                <ButtonAdd onClick={() => addPokemon()}>Mais Pokémons</ButtonAdd>
             </ContainerHomePage>
            
 

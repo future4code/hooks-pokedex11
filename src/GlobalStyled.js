@@ -1,4 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-y:scroll;
     scrollbar-width:none;
     -ms-overflow-style:none;
+    
 
     &::-webkit-scrollbar{
     width:0;
