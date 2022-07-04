@@ -1,30 +1,46 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../constants/urls";
 import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
 
-    const [pokemonNames,setPokemonNames] = useState([])
+    const [pokemonNames, setPokemonNames] = useState([])
+    const [pokemons, setPokemons] = useState([])
+    const [pokedex,setPokedex] = useState([])
 
-    useEffect(()=>{
+
+    useEffect(() => {
         getPokemonNames()
-    },[])
-    useEffect(()=>{
+    }, [])
+    useEffect(() => {
+        const newList = []
+        pokemonNames.forEach((item) => {
+            axios.get(item.url)
+            .then((response)=>{
+                newList.push(response.data)
+                if(newList.length === 20){
+                    setPokemons(newList)
+                }
+        })
+            .catch((error)=> console.log(error.message))
+        })
 
-    },[pokemonNames])
-    
+    }, [pokemonNames])
+
     const getPokemonNames = () => {
         axios.get(`${BASE_URL}/pokemon`)
-        .then((response)=>{
-            setPokemonNames(response.data.results)
-        }).catch((error)=>{
-            console.log(error.message)
-        })
+            .then((response) => {
+                setPokemonNames(response.data.results)
+            }).catch((error) => {
+                console.log(error.message)
+            })
     }
 
-    return(
-        <GlobalStateContext.Provider>
+    const data = {pokemons,setPokemons,pokedex,setPokedex}
+
+    return (
+        <GlobalStateContext.Provider value={data}>
             {props.children}
         </GlobalStateContext.Provider>
     )
