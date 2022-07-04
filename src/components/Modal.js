@@ -2,6 +2,8 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { ModalStyled } from "./ModalStyled"
 import { Container } from "./ModalStyled"
+import { PokedexScreen, PokemonImg, Stat, Moves, Type } from "./ModalStyled"
+
 
 
 export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
@@ -20,8 +22,8 @@ export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
     const pokemonStats = detailsPokemon.stats && detailsPokemon.stats.map((stats, index) => {
         return (
             <div key={index}>
-                <p>{stats.stat.name}</p>
-                <p>{stats.base_stat}</p>
+                <h5>{stats.stat.name}{stats.base_stat}</h5>
+
             </div>
         )
     })
@@ -46,18 +48,25 @@ export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
         <ModalStyled id={id} onClick={handleOutSideClick}>
             <Container>
                 <div>{children}</div>
-                {detailsPokemon && detailsPokemon.sprites && (<div>
-                    <img src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}/>
-                    <img src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.back_default}/>
-                </div>)}
-                <div>Detalhes</div>
+                <PokedexScreen>
+                    {detailsPokemon && detailsPokemon.sprites && (<div>
+                        <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.back_default} />
+                        <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
+                    </div>)}
+                </PokedexScreen>
                 <button onClick={onClose} >fechar</button>
-                <h1>status</h1>
-                {pokemonStats}
-                <h2>movimentos</h2>
-                {pokemonMoves}
-                <h2>tipo</h2>
-                {pokemonTypes}
+                <Type>
+                    <h2>tipo</h2>
+                    {pokemonTypes}
+                </Type>
+                <Moves>
+                    <h2>movimentos</h2>
+                    {pokemonMoves}
+                </Moves>               
+                <Stat>
+                    <h1>status</h1>
+                    {pokemonStats}
+                </Stat>
             </Container>
         </ModalStyled>
     )
