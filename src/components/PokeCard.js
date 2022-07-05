@@ -9,6 +9,11 @@ import { Modal } from "./Modal"
 export const PokeCard = (props) => {
     const [isModalVisible , setIsModalVisible] = useState(false)
     const [pokeUrl, setPokeUrl] = useState("")
+    
+    const SaveTokenPokemon = (pokemon) => {
+        localStorage.setItem("pokemon", pokemon)
+        setIsModalVisible(true)
+    }
 
     useEffect(() => {
         axios
@@ -17,17 +22,12 @@ export const PokeCard = (props) => {
             .catch((error) => console.log(error))
     }, [pokeUrl])
 
-    const SaveTokenPokemon = (pokemon) => {
-        localStorage.setItem("pokemon", pokemon)
-        setIsModalVisible(true)
-    }
-
     return (
         <>
             <Card>
                 <ButtonsAndName>
                     <Tittle>{props.name}</Tittle>
-                    <Buttons >Add Pokédex</Buttons>                  
+                    <Buttons onClick={() => props.addToList(props.name)} >Add Pokédex</Buttons>                  
                     <Buttons onClick={() =>SaveTokenPokemon(props.name)} >Detalhes</Buttons>
                     {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}/> : null}                    
                 </ButtonsAndName>
