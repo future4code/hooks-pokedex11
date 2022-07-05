@@ -5,7 +5,7 @@ import axios from "axios"
 import { PokeCard } from "../../components/PokeCard"
 import { ContainerHomePage, HeaderHomePage , ButtonList , ButtonAdd} from "./HomePageStyled"
 import picachu from "../../img/pokemon.png"
-import Pokelist from "../../img/pokelist.png"
+import pokelist from "../../img/pokelist.png"
 import { Logo } from "./HomePageStyled"
 
 
@@ -42,7 +42,7 @@ const HomePage = () => {
     return (
         <>
             <HeaderHomePage>
-                <ButtonList onClick={() => goToListPage(navigate)} ><img src={Pokelist}/></ButtonList>
+                <ButtonList onClick={() => goToListPage(navigate)} ><img src={pokelist}/></ButtonList>
                 <Logo src={picachu} />
                
             </HeaderHomePage>

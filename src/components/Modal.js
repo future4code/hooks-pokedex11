@@ -2,7 +2,9 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { ModalStyled } from "./ModalStyled"
 import { Container } from "./ModalStyled"
-import { PokedexScreen, PokemonImg, Stat, Moves, Type } from "./ModalStyled"
+import { PokemonImg, Stat, Moves, Type } from "./ModalStyled"
+import { PokeImgDetais, PokeDetails, ScreenImg, Dots , ButtonClose , Tittles , ExplanationStatus , ExplanationMoves} from "./ModalStyled"
+import { BlueDot, RedDot, YellowDot, GreenDot } from "./ModalStyled"
 
 
 
@@ -22,15 +24,14 @@ export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
     const pokemonStats = detailsPokemon.stats && detailsPokemon.stats.map((stats, index) => {
         return (
             <div key={index}>
-                <h5>{stats.stat.name}{stats.base_stat}</h5>
-
+                <ExplanationStatus>{`${stats.stat.name}:`}{stats.base_stat}</ExplanationStatus>
             </div>
         )
     })
 
     const pokemonMoves = detailsPokemon.moves && detailsPokemon.moves.map((moves, index) => {
         if (index < 3) {
-            return <p key={index}>{moves.move.name}</p>
+            return <ExplanationMoves key={index}>{moves.move.name}</ExplanationMoves>
         }
 
     })
@@ -38,7 +39,7 @@ export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
     const pokemonTypes = detailsPokemon.types && detailsPokemon.types.map((types, index) => {
         return (
             <div key={index}>
-                {types.type.name}
+                <h3>{types.type.name}</h3>
             </div>
         )
     })
@@ -47,26 +48,35 @@ export const Modal = ({ id = "modal", onClose = () => { }, children }) => {
     return (
         <ModalStyled id={id} onClick={handleOutSideClick}>
             <Container>
-                <div>{children}</div>
-                <PokedexScreen>
-                    {detailsPokemon && detailsPokemon.sprites && (<div>
-                        <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.back_default} />
-                        <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
-                    </div>)}
-                </PokedexScreen>
-                <button onClick={onClose} >fechar</button>
-                <Type>
-                    <h2>tipo</h2>
-                    {pokemonTypes}
-                </Type>
-                <Moves>
-                    <h2>movimentos</h2>
-                    {pokemonMoves}
-                </Moves>               
-                <Stat>
-                    <h1>status</h1>
-                    {pokemonStats}
-                </Stat>
+                <PokeImgDetais>
+                    <Dots>
+                        <BlueDot />
+                        <RedDot />
+                        <YellowDot />
+                        <GreenDot />
+                    </Dots>
+                    <ScreenImg>
+                        {detailsPokemon && detailsPokemon.sprites && (<div>
+                            <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.back_default} />
+                            <PokemonImg src={detailsPokemon.sprites.versions["generation-v"]["black-white"].animated.front_default} />
+                        </div>)}
+                    </ScreenImg>
+                    <Type>
+                        <h2>Tipo:</h2>
+                        {pokemonTypes}
+                    </Type>
+                </PokeImgDetais>
+                <PokeDetails>
+                <ButtonClose onClick={onClose} >X</ButtonClose>
+                    <Stat>
+                        <Tittles>Status</Tittles>
+                        {pokemonStats}
+                    </Stat>
+                    <Moves>
+                        <Tittles>Movimentos</Tittles>
+                        {pokemonMoves}
+                    </Moves>
+                </PokeDetails>
             </Container>
         </ModalStyled>
     )
