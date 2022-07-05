@@ -1,21 +1,21 @@
 import styled from "styled-components"
 
 export const ModalStyled = styled.div`
-width:100%;
-height:100vh;
-position: absolute;
-top:0;
-left:0;
+height: 100%;
+width: 100%;
+background-color: rgba(0, 0, 0, 0.8);
 z-index:100; 
-background-color:rgba(0,0,0,0.8);
-display:flex;
-justify-content:center;
-align-items:center;
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+padding-left: 65px;
+padding-top: 40px;
 `
 export const Container = styled.div`
 background-color:#ef233c;
-width:40vw;
-height:95vh;
+width:90vw;
+height:90vh;
 border-radius: 10px;
 display: flex;
 flex-direction: column;
