@@ -27,7 +27,7 @@ export const PokeCard = (props) => {
             <Card>
                 <ButtonsAndName>
                     <Tittle>{props.name}</Tittle>
-                    <Buttons >Add Pokédex</Buttons>                  
+                    <Buttons onClick={() => props.addToList(props.name)} >Add Pokédex</Buttons>                
                     <Buttons onClick={() =>SaveTokenPokemon(props.name)} >Detalhes</Buttons>
                     {isModalVisible ? <Modal onClose={() => setIsModalVisible(false)}/> : null}                    
                 </ButtonsAndName>

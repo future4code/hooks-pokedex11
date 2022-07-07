@@ -13,6 +13,14 @@ const HomePage = () => {
     const navigate = useNavigate()
     const [pokemon, setPokemon] = useState([])
     const [morePokemon , setMorePokemon] = useState(20)
+    const [list , setList] = useState([])
+
+    const addToList = (name) => {
+        const listCopy = [...list , name]
+        setList(listCopy)
+    }
+    
+    console.log(list)
 
     useEffect(() => {
         showArray()
@@ -34,7 +42,7 @@ const HomePage = () => {
     const onScreen = pokemon && pokemon.map((poke) => {
         return (
             <PokeCard key={poke.url}
-                name={poke.name}                
+                name={poke.name} addToList={addToList}                
             />
         )
     })
