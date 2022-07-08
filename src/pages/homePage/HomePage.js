@@ -11,11 +11,7 @@ import GlobalStateContext from "../../global/GlobalStateContext"
 
 const HomePage = () => {
     const navigate = useNavigate()
-    
-    const {pokemons} = useContext(GlobalStateContext)
-   
 
-   
 
     const onScreen = pokemons && pokemons.map((poke) => {
         return (
