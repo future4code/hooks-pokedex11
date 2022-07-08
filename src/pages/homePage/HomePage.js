@@ -15,21 +15,34 @@ const HomePage = () => {
     const [morePokemon, setMorePokemon] = useState(20)
     const [list , setList] = useState([])
 
+    // const addToPokelist = (pokemon) => {
+    //     const index = list.findIndex((pokemonInList) => {
+    //         if(pokemonInList.id === pokemonInList.id) {
+    //             return true
+    //         } else {
+    //             return false
+    //         }
+    //     })
+    //     console.log(index)
+    // }
+    
+
     const addToList = (name) => {
         const listCopy = [...list , name]
         setList(listCopy)
     }
     
-    console.log(list)
+
+   
 
     useEffect(() => {
         showArray()
-    }, [() => showArray()])
+        console.log(list)
+    }, [morePokemon])
 
     const addPokemon = () => {
         const Add = morePokemon + 9
         setMorePokemon(Add)
-
     }
 
     const showArray = () => {
