@@ -1,6 +1,6 @@
 
-export const goToDetailsPage = (navigate) => {
-    navigate("/Detalhes")
+export const goToDetailsPage = (navigate,name) => {
+    navigate(`/Detalhes/${name}`)
 }
 
 export const goToListPage = (navigate) => {

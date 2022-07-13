@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -13,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     overflow-y:scroll;
     scrollbar-width:none;
     -ms-overflow-style:none;
+    
 
     &::-webkit-scrollbar{
     width:0;

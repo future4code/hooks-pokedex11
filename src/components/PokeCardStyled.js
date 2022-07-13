@@ -10,7 +10,11 @@ margin: 0 auto;
 background-color: #27cb50;
 border-radius: 10px;
 box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
-background-color:${(props)=>props.color};
+margin-top: 10px;
+margin-bottom: 10px;
+&:hover {
+    background-color: red;
+}
 `
 export const ImagePokemon = styled.img`
 margin-top: 5px;
@@ -35,6 +39,7 @@ export const Tittle = styled.h2`
 color: white;
 align-self: center;
 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+text-transform: capitalize;
 `
 
 export const Buttons = styled.button`
@@ -54,6 +59,7 @@ cursor: pointer;
         transform: translateX(-3px);
 }
 `
+
 
 
 
